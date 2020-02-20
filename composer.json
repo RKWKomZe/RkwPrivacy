@@ -1,5 +1,5 @@
 {
-    "name": "rkw/rkw-dataprotection",
+    "name": "rkw/rkw-privacy",
     "type": "typo3-cms-extension",
     "description": "Extension for Compliance with General Data Protection Regulation (GDPR)",
     "homepage": "https://www.rkw-kompetenzzentrum.de",
@@ -20,14 +20,17 @@
         "php": ">=5.6",
         "typo3/cms-core": "~7.6.0 || ~8.7.0"
     },
+    "suggest": {
+        "sgalinski/sg-cookie-optin": "~2.0.4"
+    },
     "autoload": {
         "psr-4": {
-            "RKW\\RkwDataProtection\\": "Classes/"
+            "RKW\\RkwPrivacy\\": "Classes/"
         }
     },
     "extra": {
         "typo3/cms": { 
-            "extension-key": "rkw_dataprotection"
+            "extension-key": "rkw_privacy"
         }
     }
 }
