@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-05-06T17:48:24Z" product-name="rkw_projects">
+		<header/>
+		<body>
+
+		    <!-- Templates/Header/Show.html -->
+			<trans-unit id="templates.header.show.imprint">
+				<source>Imprint</source>
+			</trans-unit>
+            <trans-unit id="templates.header.show.dataProtection">
+                <source>Data Protection Declaration</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

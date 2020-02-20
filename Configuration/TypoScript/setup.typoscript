@@ -1,0 +1,49 @@
+plugin.tx_rkwprivacy {
+	view {
+		templateRootPath = {$plugin.tx_rkwprivacy.view.templateRootPath}
+		partialRootPath = {$plugin.tx_rkwprivacy.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_rkwprivacy.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_rkwprivacy.persistence.storagePid}
+	}
+
+	settings {
+
+	    dataProtectionPid = {$plugin.tx_rkwprivacy.settings.dataProtectionPid}
+	    imprintPid = {$plugin.tx_rkwprivacy.settings.imprintPid}
+
+        sgCookieOptIn {
+
+			storagePid = {$plugin.tx_rkwprivacy.settings.sgCookieOptIn.storagePid}
+		}
+    }
+}
+
+
+
+
+page.headerData {
+
+    940 = USER
+    940 {
+
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = RkwPrivacy
+        pluginName = Header
+        vendorName = RKW
+        controller = Header
+        switchableControllerActions {
+
+            # Again: Controller-Name and Action
+            Header {
+                1 = show
+            }
+        }
+
+        view =< plugin.tx_rkwprivacy.view
+        persistence =< plugin.tx_rkwprivacy.persistence
+        settings =< plugin.tx_rkwprivacy.settings
+
+    }
+}
