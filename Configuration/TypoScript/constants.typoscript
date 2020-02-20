@@ -1,0 +1,30 @@
+plugin.tx_rkwprivacy {
+    view {
+		# cat=plugin.tx_rkwprivacy/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:rkw_privacy/Resources/Private/Templates/
+		# cat=plugin.tx_rkwprivacy/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:rkw_privacy/Resources/Private/Partials/
+		# cat=plugin.tx_rkwprivacy/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:rkw_privacy/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_rkwprivacy; type=integer; label=Default storage PID
+		storagePid =
+    }
+
+
+	settings {
+
+	    # cat=plugin.tx_rkwprivacy//a; type=int; label=Pid of data protection declaration
+        dataProtectionPid =
+
+        # cat=plugin.tx_rkwprivacy//a; type=int; label=Pid of imprint
+        imprintPid =
+
+        sgCookieOptIn {
+
+            # cat=plugin.tx_rkwprivacy//a; type=int; label=Pid to load data from
+			storagePid =
+		}
+    }
+}
