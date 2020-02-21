@@ -46,29 +46,32 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_opti
 
             parent::processDatamap_afterAllOperations($dataHandler);
 
-            $dir = new \DirectoryIterator(PATH_site . self::FOLDER_FILEADMIN);
-            foreach ($dir as $info) {
-                if (
-                    (!$info->isDot())
-                    && ($info->isDir()))
-                {
+            if (is_dir(PATH_site . self::FOLDER_FILEADMIN)) {
 
-                    $subDir = new \DirectoryIterator($info->getPathname());
-                    foreach ($subDir as $subInfo) {
-                        if (!$subInfo->isDot()) {
+                $dir = new \DirectoryIterator(PATH_site . self::FOLDER_FILEADMIN);
+                foreach ($dir as $info) {
+                    if (
+                        (!$info->isDot())
+                        && ($info->isDir()))
+                    {
 
-                            if (
-                                (strpos($subInfo->getFilename(), 'cookieOptin') === 0)
-                                && ($subInfo->getExtension() == 'js')
-                            ) {
-                                $this->replaceFooterLinks($subInfo->getPath() . DIRECTORY_SEPARATOR . $subInfo->getFilename());
+                        $subDir = new \DirectoryIterator($info->getPathname());
+                        foreach ($subDir as $subInfo) {
+                            if (!$subInfo->isDot()) {
+
+                                if (
+                                    (strpos($subInfo->getFilename(), 'cookieOptin') === 0)
+                                    && ($subInfo->getExtension() == 'js')
+                                ) {
+                                    $this->replaceFooterLinks($subInfo->getPath() . DIRECTORY_SEPARATOR . $subInfo->getFilename());
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            GeneralUtility::fixPermissions(PATH_site . self::FOLDER_FILEADMIN, true);
+                GeneralUtility::fixPermissions(PATH_site . self::FOLDER_FILEADMIN, true);
+            }
         }
 
 
