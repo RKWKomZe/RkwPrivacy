@@ -6,16 +6,6 @@ call_user_func(
     {
 
 
-        //=================================================================
-        // Add TypoScript
-        //=================================================================
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-            $extKey,
-            'Configuration/TypoScript',
-            'RKW Privacy'
-        );
-
-
     },
     $_EXTKEY
 );
