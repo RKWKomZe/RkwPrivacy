@@ -2,6 +2,8 @@
 
 namespace RKW\RkwPrivacy\SGalinski\Hook;
 
+use SGalinski\SgCookieOptin\Service\ExtensionSettingsService;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -40,21 +42,27 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_opti
          * @throws \TYPO3\CMS\Core\Error\Http\PageNotFoundException
          * @throws \TYPO3\CMS\Core\Error\Http\ServiceUnavailableException
          * @throws \TYPO3\CMS\Core\Http\ImmediateResponseException
+         * @throws \TYPO3\CMS\Core\Exception\SiteNotFoundException
          */
         public function processDatamap_afterAllOperations(DataHandler $dataHandler)
         {
 
             parent::processDatamap_afterAllOperations($dataHandler);
 
-            if (is_dir(PATH_site . self::FOLDER_FILEADMIN)) {
+            $folder = ExtensionSettingsService::getSetting(ExtensionSettingsService::SETTING_FOLDER);
+            if (!$folder) {
+                return;
+            }
 
-                $dir = new \DirectoryIterator(PATH_site . self::FOLDER_FILEADMIN);
+            $path = Environment::getPublicPath() . '/'  . $folder;
+            if (is_dir($path)) {
+
+                $dir = new \DirectoryIterator($path);
                 foreach ($dir as $info) {
                     if (
                         (!$info->isDot())
                         && ($info->isDir()))
                     {
-
                         $subDir = new \DirectoryIterator($info->getPathname());
                         foreach ($subDir as $subInfo) {
                             if (!$subInfo->isDot()) {
@@ -70,7 +78,7 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_opti
                     }
                 }
 
-                GeneralUtility::fixPermissions(PATH_site . self::FOLDER_FILEADMIN, true);
+                GeneralUtility::fixPermissions($path, true);
             }
         }
 
@@ -80,7 +88,7 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_opti
          *
          * @param string $file
          */
-        protected function replaceFooterLinks($file)
+        protected function replaceFooterLinks(string $file): void
         {
             if (
                 (file_exists($file))
