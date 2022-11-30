@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Class GenerateFilesAfterTcaSave
  *
  * @author Steffen Kroggel <developer@steffenkroggel.de>
- * @copyright Rkw Kompetenzzentrum
+ * @copyright RKW Kompetenzzentrum
  * @package RKW_RkwPrivacy
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
