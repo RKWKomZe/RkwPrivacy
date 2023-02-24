@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwPrivacy\Controller;
 
 /*
@@ -26,7 +25,6 @@ namespace RKW\RkwPrivacy\Controller;
 class HeaderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
-
     /**
      * action show
      * shows the eTracker code
@@ -35,7 +33,7 @@ class HeaderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function showAction()
     {
-
+        // nothing to do here
     }
 
 

@@ -44,7 +44,7 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_opti
          * @throws \TYPO3\CMS\Core\Http\ImmediateResponseException
          * @throws \TYPO3\CMS\Core\Exception\SiteNotFoundException
          */
-        public function processDatamap_afterAllOperations(DataHandler $dataHandler)
+        public function processDatamap_afterAllOperations(DataHandler $dataHandler): void
         {
 
             parent::processDatamap_afterAllOperations($dataHandler);

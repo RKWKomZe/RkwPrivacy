@@ -1,5 +1,4 @@
 <?php
-
 namespace RKW\RkwPrivacy\SGalinski\UserFunction;
 
 /*
@@ -15,6 +14,10 @@ namespace RKW\RkwPrivacy\SGalinski\UserFunction;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+
 /**
  * Class AddCookieOptinJsAndCss
  *
@@ -23,7 +26,6 @@ namespace RKW\RkwPrivacy\SGalinski\UserFunction;
  * @package RKW_RkwPrivacy
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_optin')) {
 
     class AddCookieOptinJsAndCss extends \SGalinski\SgCookieOptin\UserFunction\AddCookieOptinJsAndCss
@@ -34,18 +36,18 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_opti
          *
          * @return int
          */
-        protected function getStoragePid()
+        protected function getStoragePid(): int
         {
 
             try {
 
                 /** @var \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager */
-                $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
+                $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectManager::class);
 
                 /** @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManager $configurationManager */
-                $configurationManager = $objectManager->get(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::class);
+                $configurationManager = $objectManager->get(ConfigurationManager::class);
                 $settings = $configurationManager->getConfiguration(
-                    \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
+                    ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
                     'rkwPrivacy'
                 );
 
@@ -63,34 +65,13 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sg_cookie_opti
 
         }
 
-        /**
-         * Returns true, if a configuration is on the given page id.
-         *
-         * @param int $pageUid
-         *
-         * @return boolean
-         */
-        protected function isConfigurationOnPage($pageUid)
-        {
-            $pageUid = (int)$pageUid;
-            if ($pageUid <= 0) {
-                return false;
-            }
-
-            if ($confPid = $this->getStoragePid()) {
-                $pageUid = $confPid;
-            }
-
-            return parent::isConfigurationOnPage($pageUid);
-        }
-
 
         /**
          * Returns always the first page within the rootline
          *
          * @return int
          */
-        protected function getRootPageId()
+        protected function getRootPageId(): int
         {
             if ($this->rootpage === null) {
 

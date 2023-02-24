@@ -12,16 +12,12 @@ plugin.tx_rkwprivacy {
 
 	    dataProtectionPid = {$plugin.tx_rkwprivacy.settings.dataProtectionPid}
 	    imprintPid = {$plugin.tx_rkwprivacy.settings.imprintPid}
-
         sgCookieOptIn {
-
 			storagePid = {$plugin.tx_rkwprivacy.settings.sgCookieOptIn.storagePid}
 		}
     }
 }
-
-
-
+# ========================================================================================
 
 page.headerData {
 
